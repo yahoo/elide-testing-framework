@@ -1,0 +1,16 @@
+.gradle/
+.idea/
+.repo/
+.project/
+build/
+gradle/
+logs/
+src/main/gen/
+target/
+
+
+.settings
+.classpath
+.metadata
+.DS_Store
+gradle-app.setting

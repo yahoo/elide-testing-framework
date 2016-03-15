@@ -1,0 +1,34 @@
+{
+  "data": {
+    "id": "3",
+    "type": "child",
+    "attributes": {
+      "firstName": "Oengus",
+      "lastName": "Bonham",
+      "age": 3,
+      "deceased": false
+    },
+    "relationships": {
+      "parents": {
+        "data": [
+          {
+            "id": "1",
+            "type": "parent"
+          },
+          {
+            "id": "2",
+            "type": "parent"
+          }
+        ]
+      },
+      "playmates": {
+        "data": [
+          {
+            "id": "6",
+            "type": "child"
+          }
+        ]
+      }
+    }
+  }
+}

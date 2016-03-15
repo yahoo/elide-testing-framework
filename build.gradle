@@ -1,0 +1,140 @@
+plugins {
+    id "java"
+    id "antlr"
+    id "jacoco"
+    id "checkstyle"
+    id "maven-publish"
+    id "com.jfrog.bintray" version "1.5"
+}
+
+
+group = "com.yahoo.elide"
+version = "1.0.0-" + (new Date()).format("yyyyMMddHHmm")
+
+description = "Elide Security Testing Framework"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    String elideVersion = "[2.0,3.0)"
+    String logbackVersion = "[1.1.3,2.0)"
+    String cucumberVersion = "[1.2.4,2.0)"
+
+    antlr "org.antlr:antlr4:4.5"
+
+    compile(group: "com.yahoo.elide", name: "elide-annotations", version: elideVersion) {
+        exclude(module: "commons-logging")
+    }
+    compile(group: "com.yahoo.elide", name: "elide-core", version: elideVersion) {
+        exclude(module: "commons-logging")
+    }
+    compile "com.fasterxml.jackson.core:jackson-databind:2.6.3"
+    compile "info.cukes:cucumber-java:${cucumberVersion}"
+    compile "javax.persistence:persistence-api:1.0.2"
+    compile "org.projectlombok:lombok:1.16.6"
+    compile "org.slf4j:slf4j-api:1.7.13"
+    compile "org.mockito:mockito-all:1.9.5"
+
+    testCompile "ch.qos.logback:logback-classic:${logbackVersion}"
+    testCompile "ch.qos.logback:logback-core:${logbackVersion}"
+    testCompile "commons-net:commons-net:3.3"
+    testCompile "org.apache.commons:commons-dbcp2:2.0.1"
+    testCompile "org.glassfish.jersey.core:jersey-server:2.19"
+    testCompile "uk.com.robust-it:cloning:1.9.2"
+    testCompile(group: "org.testng", name: "testng", version:"6.9.9") {
+        exclude(module: "junit")
+    }
+    testCompile(group: "com.yahoo.elide", name: "elide-datastore-hibernate3", version: elideVersion) {
+        exclude(module: "elide-core")
+        exclude(module: "commons-collections")
+    }
+}
+
+generateGrammarSource {
+    arguments += ["-visitor", "-no-listener"]
+}
+
+checkstyle {
+    File configDir = new File(buildscript.sourceFile.parentFile, "config")
+    configProperties.checkstyleConfigDir = "$configDir/checkstyle"
+}
+
+test {
+    useTestNG()
+
+    // fix for https://issues.gradle.org/browse/GRADLE-1682
+    scanForTestClasses = false
+    include "**/*Test.class"
+
+    boolean didDisplayMessage = false
+    beforeSuite { descriptor ->
+        if (!didDisplayMessage) {
+            didDisplayMessage = true
+            logger.lifecycle("Setting up tests...")
+        }
+    }
+
+    afterTest { descriptor, result ->
+        String fullyQualifiedTest = "${descriptor.getParent().getName()}.${descriptor.getName()}"
+        long duration = result.getEndTime() - result.getStartTime()
+        String status
+        if (result.getSuccessfulTestCount() > 0) {
+            status = "PASS"
+        } else {
+            status = "FAIL"
+        }
+        logger.lifecycle("Test ${fullyQualifiedTest}: ${status} (${duration}ms)")
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check {
+    dependsOn jacocoTestReport
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from tasks.javadoc.destinationDir
+    classifier = "javadoc"
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = "sources"
+}
+
+publishing {
+    publications {
+        ElideTestingFramework(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+        }
+    }
+}
+
+// see https://github.com/bintray/gradle-bintray-plugin
+// and https://github.com/bintray/bintray-examples/blob/master/gradle-bintray-plugin-examples/publications-example/build.gradle
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_API_KEY")
+    publications = ["ElideTestingFramework"]
+
+    pkg {
+        repo = "maven"
+        name = "elide-testing-framework"
+        licenses = ["Apache-2.0"]
+        vcsUrl = "https://github.com/yahoo/elide-testing-framework"
+    }
+}

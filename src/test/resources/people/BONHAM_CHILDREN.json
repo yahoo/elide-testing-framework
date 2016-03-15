@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "child",
+      "attributes": {
+        "firstName": "Gavino",
+        "lastName": "Bonham",
+        "age": 6,
+        "deceased": false
+      },
+      "relationships": {
+        "parents": {
+          "data": [
+            {
+              "id": "1",
+              "type": "parent"
+            },
+            {
+              "id": "2",
+              "type": "parent"
+            }
+          ]
+        },
+        "playmates": {
+          "data": [
+            {
+              "id": "2",
+              "type": "child"
+            },
+            {
+              "id": "4",
+              "type": "child"
+            },
+            {
+              "id": "5",
+              "type": "child"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "child",
+      "attributes": {
+        "firstName": "Payton",
+        "lastName": "Bonham",
+        "age": 4,
+        "deceased": false
+      },
+      "relationships": {
+        "parents": {
+          "data": [
+            {
+              "id": "1",
+              "type": "parent"
+            },
+            {
+              "id": "2",
+              "type": "parent"
+            }
+          ]
+        },
+        "playmates": {
+          "data": [
+            {
+              "id": "1",
+              "type": "child"
+            },
+            {
+              "id": "5",
+              "type": "child"
+            },
+            {
+              "id": "6",
+              "type": "child"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3",
+      "type": "child",
+      "attributes": {
+        "firstName": "Oengus",
+        "lastName": "Bonham",
+        "age": 3,
+        "deceased": false
+      },
+      "relationships": {
+        "parents": {
+          "data": [
+            {
+              "id": "1",
+              "type": "parent"
+            },
+            {
+              "id": "2",
+              "type": "parent"
+            }
+          ]
+        },
+        "playmates": {
+          "data": [
+            {
+              "id": "6",
+              "type": "child"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
