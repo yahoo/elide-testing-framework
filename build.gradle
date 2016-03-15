@@ -72,6 +72,8 @@ test {
     scanForTestClasses = false
     include "**/*Test.class"
 
+    maxHeapSize = "1g"
+
     boolean didDisplayMessage = false
     beforeSuite { descriptor ->
         if (!didDisplayMessage) {
