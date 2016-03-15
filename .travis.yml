@@ -11,11 +11,6 @@
             - $HOME/.gradle/caches/
             - $HOME/.gradle/wrapper/
 
-    branches:
-        only:
-            - master
-            - "/^[0-9]+\\.[0-9]+\\.[0-9]+/"
-
     before_install: pip install --user codecov
     script: ./gradlew clean build
     after_success: codecov

@@ -3,14 +3,17 @@
 .repo/
 .project/
 build/
-gradle/
 logs/
 src/main/gen/
 target/
 
 
+# don't ignore this!
+!gradle-wrapper.jar
+
 .settings
 .classpath
+.gradletasknamecache
 .metadata
 .DS_Store
 gradle-app.setting
