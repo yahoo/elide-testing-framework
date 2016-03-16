@@ -29,9 +29,9 @@ Feature: Railsplitter Beans Security Testing
       | Goran's Spouse      | Hina |
       | Hina                | 5 |
       | Hina's Spouse       | Goran |
-      | Bonham Children     | 1,2,3 |
-      | Amalberti Children  | 4,5,6 |
-      | Tang Children       | 7 |
+      | Bonham Children     | 1,2 |
+      | Amalberti Children  | 3,4 |
+      | Tang Children       | 5 |
 
     And associated permissions
       | UserName  | EntityName | ValidIdsList            | EntityPermissions         | RestrictedReadFields  | RestrictedWriteFields |
@@ -47,19 +47,19 @@ Feature: Railsplitter Beans Security Testing
       | Margery   | parent     | Margery's Ex            | Read,Update               |                       | deceased,firstName,lastName,age,children,spouse |
       | Margery   | parent     | Goran,Hina              | Read,Update               | otherSpouses          | deceased,firstName,lastName,age,children,spouse |
       | Margery   | child      | Bonham Children         | Create,Read,Update,Delete |                       | deceased              |
-      | Margery   | child      | Amalberti Children       | Read,Update              |                       | deceased,firstName,lastName,age,parents |
+      | Margery   | child      | Amalberti Children      | Read,Update               |                       | deceased,firstName,lastName,age,parents |
 
       | Emmanuel  | parent     | Emmanuel                | Create,Read,Update        |                       | deceased              |
       | Emmanuel  | parent     | Emmanuel's Ex           | Read,Update               |                       | deceased,firstName,lastName,age,children,spouse |
       | Emmanuel  | parent     | Mo,Goran,Hina           | Read,Update               | otherSpouses          | deceased,firstName,lastName,age,children,spouse |
-      | Emmanuel  | child      | Amalberti Children       | Create,Read,Update,Delete |                       | deceased              |
+      | Emmanuel  | child      | Amalberti Children      | Create,Read,Update,Delete |                       | deceased              |
       | Emmanuel  | child      | Bonham Children,Tang Children | Read,Update         |                       | deceased,firstName,lastName,age,parents |
 
       | Goran     | parent     | Goran                   | Create,Read,Update        |                       | deceased              |
       | Goran     | parent     | Goran's Spouse          | Create,Read,Update        | otherSpouses          | deceased              |
       | Goran     | parent     | Mo,Margery,Emmanuel     | Read,Update               | otherSpouses          | deceased,firstName,lastName,age,children,spouse |
       | Goran     | child      | Tang Children           | Create,Read,Update,Delete |                       | deceased              |
-      | Goran     | child      | Amalberti Children        | Read,Update             |                       | deceased,firstName,lastName,age,parents |
+      | Goran     | child      | Amalberti Children      | Read,Update               |                       | deceased,firstName,lastName,age,parents |
 
       | Hina      | parent     | Hina                    | Create,Read,Update        |                       | deceased              |
       | Hina      | parent     | Hina's Spouse           | Create,Read,Update        | otherSpouses          | deceased              |
@@ -82,7 +82,6 @@ Feature: Railsplitter Beans Security Testing
       #   * legacy data that is valid but can no longer be produced via the API
       #   * complex permission logic (such as transactional or path specific logic)
       #     that cannot be verified with the framework and may produce erroneous validations
-      | CreateRelation:child#5/relationships/playmates:Denied=[1,2,3] |
-      | CreateRelation:child#6/relationships/playmates:Denied=[3]     |
+      | CreateRelation:child#4/relationships/playmates:Denied=[1,2] |
 
     Then send data to the Validation Driver

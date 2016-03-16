@@ -88,7 +88,7 @@ public class EntityRelationshipVisibilityValidationTest extends BaseValidationTe
                 dove,
                 "playmates",
                 Visibility.VISIBLE,
-                getDataOfTypeWithIds("child", false, "4", "6"),
+                getDataOfTypeWithIds("child", false, "3"),
                 Visibility.VISIBLE
         );
         Assert.assertTrue(getValidationResult(visibleValidation));
@@ -97,7 +97,7 @@ public class EntityRelationshipVisibilityValidationTest extends BaseValidationTe
                 dove,
                 "playmates",
                 Visibility.VISIBLE,
-                getDataOfTypeWithIds("child", false, "1", "2", "3"),
+                getDataOfTypeWithIds("child", false, "1", "2"),
                 Visibility.NOT_VISIBLE
         );
         Assert.assertTrue(getValidationResult(invisibleValidation));

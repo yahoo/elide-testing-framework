@@ -43,15 +43,11 @@
       "children": {
         "data": [
           {
+            "id": "3",
+            "type": "child"
+          },
+          {
             "id": "4",
-            "type": "child"
-          },
-          {
-            "id": "5",
-            "type": "child"
-          },
-          {
-            "id": "6",
             "type": "child"
           }
         ]

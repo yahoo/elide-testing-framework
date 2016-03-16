@@ -90,12 +90,10 @@ public class SetupTestDataDriver {
         Parent margery = (Parent) bonhams.get("margery");
         Child gavino = (Child) bonhams.get("gavino");
         Child payton = (Child) bonhams.get("payton");
-        Child oengus = (Child) bonhams.get("oengus");
 
         Parent emmanuel = (Parent) amalbertis.get("emmanuel");
         Child rebekah = (Child) amalbertis.get("rebekah");
         Child dove = (Child) amalbertis.get("dove");
-        Child alba = (Child) amalbertis.get("alba");
 
         Parent goran = (Parent) tangs.get("goran");
         Parent hina = (Parent) tangs.get("hina");
@@ -103,12 +101,10 @@ public class SetupTestDataDriver {
 
         // set friends
         gavino.setPlaymates(asSet(payton, rebekah, dove));
-        payton.setPlaymates(asSet(gavino, dove, alba));
-        oengus.setPlaymates(asSet(alba));
+        payton.setPlaymates(asSet(gavino, dove));
 
         rebekah.setPlaymates(new HashSet<>());
-        dove.setPlaymates(asSet(gavino, payton, oengus, rebekah, alba));
-        alba.setPlaymates(asSet(dove, oengus));
+        dove.setPlaymates(asSet(gavino, payton, rebekah));
 
         lim.setPlaymates(new HashSet<>());
 
@@ -177,27 +173,19 @@ public class SetupTestDataDriver {
         payton.setLastName(surname);
         payton.setAge(4);
 
-        Child oengus = new Child();
-        oengus.setFirstName("Oengus");
-        oengus.setLastName(surname);
-        oengus.setAge(3);
-
         family.put("gavino", gavino);
         family.put("payton", payton);
-        family.put("oengus", oengus);
 
         tx.save(mo);        // P1
         tx.save(margery);   // P2
         tx.save(gavino);    // C1
         tx.save(payton);    // C2
-        tx.save(oengus);    // C3
 
         Set<Parent> parents = asSet(mo, margery);
         gavino.setParents(parents);
         payton.setParents(parents);
-        oengus.setParents(parents);
 
-        Set<Child> children = asSet(gavino, payton, oengus);
+        Set<Child> children = asSet(gavino, payton);
         mo.setChildren(children);
         margery.setChildren(children);
 
@@ -239,27 +227,18 @@ public class SetupTestDataDriver {
         dove.setLastName(surname);
         dove.setAge(11);
 
-        Child alba = new Child();
-        alba.setFirstName("Alba");
-        alba.setLastName(surname);
-        alba.setAge(8);
-
         family.put("rebekah", rebekah);
         family.put("dove", dove);
-        family.put("alba", alba);
-
 
         tx.save(emmanuel);  // P3
         tx.save(rebekah);   // C4
         tx.save(dove);      // C5
-        tx.save(alba);      // C6
 
         Set<Parent> parents = asSet(emmanuel);
         rebekah.setParents(parents);
         dove.setParents(parents);
-        alba.setParents(parents);
 
-        Set<Child> children = asSet(rebekah, dove, alba);
+        Set<Child> children = asSet(rebekah, dove);
         emmanuel.setChildren(children);
 
         saveFamiliy(tx, family);
@@ -303,7 +282,7 @@ public class SetupTestDataDriver {
 
         tx.save(goran);     // P4
         tx.save(hina);      // P5
-        tx.save(lim);       // C7
+        tx.save(lim);       // C6
 
         Set<Parent> parents = asSet(goran, hina);
         lim.setParents(parents);

@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "5",
+    "id": "4",
     "type": "child",
     "attributes": {
       "firstName": "Dove",
@@ -29,14 +29,6 @@
           },
           {
             "id": "3",
-            "type": "child"
-          },
-          {
-            "id": "4",
-            "type": "child"
-          },
-          {
-            "id": "6",
             "type": "child"
           }
         ]

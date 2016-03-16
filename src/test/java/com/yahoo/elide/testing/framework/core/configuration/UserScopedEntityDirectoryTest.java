@@ -103,7 +103,7 @@ public class UserScopedEntityDirectoryTest {
                 rows
         );
 
-        Set<String> expected = Sets.newHashSet("1", "2", "3", "4");
+        Set<String> expected = Sets.newHashSet("1", "2", "4");
         Set<String> actual =  allowedEntityDirectory.getAllIds("child");
 
         Assert.assertEquals(expected, actual);

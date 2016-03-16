@@ -3,14 +3,21 @@
 .repo/
 .project/
 build/
-gradle/
 logs/
+out/
 src/main/gen/
 target/
 
 
+# don't ignore this!
+!gradle-wrapper.jar
+
 .settings
 .classpath
+.gradletasknamecache
 .metadata
 .DS_Store
+elide-testing-framework.ipr
+elide-testing-framework.iws
+elide-testing-framework.iml
 gradle-app.setting

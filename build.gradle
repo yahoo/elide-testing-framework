@@ -1,4 +1,5 @@
 plugins {
+    id "idea"
     id "java"
     id "antlr"
     id "jacoco"
@@ -6,7 +7,6 @@ plugins {
     id "maven-publish"
     id "com.jfrog.bintray" version "1.5"
 }
-
 
 group = "com.yahoo.elide"
 version = "1.0.0-" + (new Date()).format("yyyyMMddHHmm")
@@ -72,6 +72,8 @@ test {
     scanForTestClasses = false
     include "**/*Test.class"
 
+    maxHeapSize = "1g"
+
     boolean didDisplayMessage = false
     beforeSuite { descriptor ->
         if (!didDisplayMessage) {
@@ -81,15 +83,10 @@ test {
     }
 
     afterTest { descriptor, result ->
-        String fullyQualifiedTest = "${descriptor.getParent().getName()}.${descriptor.getName()}"
-        long duration = result.getEndTime() - result.getStartTime()
-        String status
         if (result.getSuccessfulTestCount() > 0) {
-            status = "PASS"
-        } else {
-            status = "FAIL"
+            long duration = result.getEndTime() - result.getStartTime()
+            logger.lifecycle("Test ${descriptor.getName()}: PASS (${duration}ms)")
         }
-        logger.lifecycle("Test ${fullyQualifiedTest}: ${status} (${duration}ms)")
     }
 }
 
