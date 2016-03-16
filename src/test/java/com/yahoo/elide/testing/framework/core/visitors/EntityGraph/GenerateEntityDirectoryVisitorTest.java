@@ -31,7 +31,7 @@ public class GenerateEntityDirectoryVisitorTest {
 
         Assert.assertEquals(expected, actual);
 
-        expected = Sets.newHashSet("1", "2", "3", "4", "5", "6", "7");
+        expected = Sets.newHashSet("1", "2", "3", "4", "5");
         actual = visitor.getAllIds("child");
 
         Assert.assertEquals(expected, actual);

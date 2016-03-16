@@ -112,7 +112,6 @@ public class TestEntityFactory {
 
             case BONHAM_GAVINO:
             case BONHAM_PAYTON:
-            case BONHAM_OENGUS:
                 lineage = Collections.singletonList(getChildrenCollectionForParent(Names.BONHAM_MO));
                 break;
 
@@ -122,7 +121,6 @@ public class TestEntityFactory {
 
             case AMALBERTI_REBEKA:
             case AMALBERTI_DOVE:
-            case AMALBERTI_ALBA:
                 lineage = Collections.singletonList(getChildrenCollectionForParent(Names.AMALBERTI_EMMANUEL));
                 break;
 
@@ -148,11 +146,9 @@ public class TestEntityFactory {
             case BONHAM_MARGERY:
             case BONHAM_GAVINO:
             case BONHAM_PAYTON:
-            case BONHAM_OENGUS:
             case AMALBERTI_EMMANUEL:
             case AMALBERTI_REBEKA:
             case AMALBERTI_DOVE:
-            case AMALBERTI_ALBA:
             case TANG_GORAN:
             case TANG_HINA:
             case TANG_LIM:

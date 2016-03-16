@@ -124,7 +124,7 @@ public class EntityRelationshipDeleteabilityValidationTest extends BaseValidatio
                 dove,
                 "playmates",
                 Visibility.VISIBLE,
-                getDataOfTypeWithIds("child", false, "1", "2", "3", "4", "6"),
+                getDataOfTypeWithIds("child", false, "1", "2", "3"),
                 Visibility.NOT_VISIBLE
         );
         Assert.assertTrue(getValidationResult(visibleImmutableValidation));
@@ -135,7 +135,7 @@ public class EntityRelationshipDeleteabilityValidationTest extends BaseValidatio
                 dove,
                 "playmates",
                 Visibility.VISIBLE,
-                getDataOfTypeWithIds("child", false, "1", "2", "3", "4", "6"),
+                getDataOfTypeWithIds("child", false, "1", "2", "3"),
                 Visibility.VISIBLE
         );
         Assert.assertTrue(getValidationResult(visibleMutableValidation));
