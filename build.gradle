@@ -6,6 +6,7 @@ plugins {
     id "checkstyle"
     id "maven-publish"
     id "com.jfrog.bintray" version "1.5"
+    id "org.standardout.versioneye" version "1.2.0"
 }
 
 group = "com.yahoo.elide"
@@ -22,12 +23,9 @@ repositories {
 }
 
 dependencies {
+    antlr "org.antlr:antlr4:[4.5,5)"
+
     String elideVersion = "[2.0,3.0)"
-    String logbackVersion = "[1.1.3,2.0)"
-    String cucumberVersion = "[1.2.4,2.0)"
-
-    antlr "org.antlr:antlr4:4.5"
-
     compile(group: "com.yahoo.elide", name: "elide-annotations", version: elideVersion) {
         exclude(module: "commons-logging")
     }
@@ -35,19 +33,20 @@ dependencies {
         exclude(module: "commons-logging")
     }
     compile "com.fasterxml.jackson.core:jackson-databind:2.6.3"
-    compile "info.cukes:cucumber-java:${cucumberVersion}"
+    compile "info.cukes:cucumber-java:1.2.4"
     compile "javax.persistence:persistence-api:1.0.2"
-    compile "org.projectlombok:lombok:1.16.6"
-    compile "org.slf4j:slf4j-api:1.7.13"
-    compile "org.mockito:mockito-all:1.9.5"
+    compile "org.projectlombok:lombok:1.16.8"
+    compile "org.slf4j:slf4j-api:1.7.19"
 
+    String logbackVersion = "[1.1.3,2.0)"
     testCompile "ch.qos.logback:logback-classic:${logbackVersion}"
     testCompile "ch.qos.logback:logback-core:${logbackVersion}"
-    testCompile "commons-net:commons-net:3.3"
-    testCompile "org.apache.commons:commons-dbcp2:2.0.1"
-    testCompile "org.glassfish.jersey.core:jersey-server:2.19"
-    testCompile "uk.com.robust-it:cloning:1.9.2"
-    testCompile(group: "org.testng", name: "testng", version:"6.9.9") {
+    testCompile "commons-net:commons-net:[3.3,4)"
+    testCompile "org.apache.commons:commons-dbcp2:[2.0.1,3)"
+    testCompile "org.glassfish.jersey.core:jersey-server:[2.22,3)"
+    testCompile "org.mockito:mockito-all:[1.10,2)"
+    testCompile "uk.com.robust-it:cloning:[1.9.2,2)"
+    testCompile(group: "org.testng", name: "testng", version:"[6.8,7)") {
         exclude(module: "junit")
     }
     testCompile(group: "com.yahoo.elide", name: "elide-datastore-hibernate3", version: elideVersion) {
@@ -97,7 +96,12 @@ jacocoTestReport {
     }
 }
 
+versioneye {
+    exclude 'checkstyle', 'compileTestJava'
+}
+
 check {
+    dependsOn versionEyeUpdate
     dependsOn jacocoTestReport
 }
 

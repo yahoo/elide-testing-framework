@@ -1,8 +1,15 @@
 ---
     language: java
     sudo: false
-    jdk:
-        - oraclejdk8
+    jdk: [oraclejdk8]
+    branches:
+        only:
+            - master
+            - /v\d+\.\d+\.\d+(-.*)?/
+
+    env:
+        global:
+            - secure: "xDvo6ue0/w/D9eJ6q256vfbvtKxGX2bxTqLBa+U9RHw/z+C5S/iPg8Z+cgwln8WO3eO0Mbi8niYuOrZU3dm1q1GI9blt7AVXLwyeGC4nc3UQOJoaFBGGhbrnvQa5U53nStFu6vGwVF1inrXOZfERNlL1iVmjhMZ3YmcSXq2rFe5iNhhwmXINzJkSr89Kfljoj9BI09itSQlNFNXzB7UidqVdO93YrvuFcyBfFidEjZAVGZeYVNY7Cu1BOQa07iPOyMQx0xI5t6HeBoFNRkG0TyP4ZYsG4JRqcTr0+gaCLCmf/oAv6kZLQWoMOnxSYpR92z5bX56HgLw8fwDamOuGqEwp1OSvHbbdar0ETXZ/ozroc2huAJxYh7vhYBcPb+E4FOZ6XdLEhGcj4Oxxl9XuwbHZJ3IKVCAkfMI38HfJqBYDIzxkOCegNKa3ObgDd/R5os7VkfzlE1RenbL/j3wJWa3zeGp7trA5iNYDksDyXOmZm2vyi8lUOobMfoY1Wca086XRaQK0Bjo8WzNk+PNHa05MGc7RogdP3EZLtOKIKJ1UnT1B+ueIZGhp74K6T7aqlMvI0mcxXgJYIMfZkEOOf3c4M5PxUGKXVa5uJTuAiN8OE/TNnk1p7Y/mZ3Le6mpohcZAtopw1PmXZytA8PGqFk5REsfuV8bHEUBWmJuP59o="
 
     before_cache:
         - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -10,7 +17,6 @@
         directories:
             - $HOME/.gradle/caches/
             - $HOME/.gradle/wrapper/
-
     before_install: pip install --user codecov
-    script: ./gradlew build
+    script: ./gradlew -Pversioneye.api_key=$VERSIONEYE_API_KEY build
     after_success: codecov
