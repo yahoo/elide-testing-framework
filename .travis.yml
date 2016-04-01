@@ -1,16 +1,17 @@
 ---
     language: java
-    sudo: false
     jdk: [oraclejdk8]
     branches:
-        only:
-            - master
-            - /v\d+\.\d+\.\d+(-.*)?/
-
+      only:
+          - master
+          - /v\d+\.\d+\.\d+(-.*)?/
     env:
-        global:
-            - secure: "xDvo6ue0/w/D9eJ6q256vfbvtKxGX2bxTqLBa+U9RHw/z+C5S/iPg8Z+cgwln8WO3eO0Mbi8niYuOrZU3dm1q1GI9blt7AVXLwyeGC4nc3UQOJoaFBGGhbrnvQa5U53nStFu6vGwVF1inrXOZfERNlL1iVmjhMZ3YmcSXq2rFe5iNhhwmXINzJkSr89Kfljoj9BI09itSQlNFNXzB7UidqVdO93YrvuFcyBfFidEjZAVGZeYVNY7Cu1BOQa07iPOyMQx0xI5t6HeBoFNRkG0TyP4ZYsG4JRqcTr0+gaCLCmf/oAv6kZLQWoMOnxSYpR92z5bX56HgLw8fwDamOuGqEwp1OSvHbbdar0ETXZ/ozroc2huAJxYh7vhYBcPb+E4FOZ6XdLEhGcj4Oxxl9XuwbHZJ3IKVCAkfMI38HfJqBYDIzxkOCegNKa3ObgDd/R5os7VkfzlE1RenbL/j3wJWa3zeGp7trA5iNYDksDyXOmZm2vyi8lUOobMfoY1Wca086XRaQK0Bjo8WzNk+PNHa05MGc7RogdP3EZLtOKIKJ1UnT1B+ueIZGhp74K6T7aqlMvI0mcxXgJYIMfZkEOOf3c4M5PxUGKXVa5uJTuAiN8OE/TNnk1p7Y/mZ3Le6mpohcZAtopw1PmXZytA8PGqFk5REsfuV8bHEUBWmJuP59o="
-
+      global:
+          - secure: xDvo6ue0/w/D9eJ6q256vfbvtKxGX2bxTqLBa+U9RHw/z+C5S/iPg8Z+cgwln8WO3eO0Mbi8niYuOrZU3dm1q1GI9blt7AVXLwyeGC4nc3UQOJoaFBGGhbrnvQa5U53nStFu6vGwVF1inrXOZfERNlL1iVmjhMZ3YmcSXq2rFe5iNhhwmXINzJkSr89Kfljoj9BI09itSQlNFNXzB7UidqVdO93YrvuFcyBfFidEjZAVGZeYVNY7Cu1BOQa07iPOyMQx0xI5t6HeBoFNRkG0TyP4ZYsG4JRqcTr0+gaCLCmf/oAv6kZLQWoMOnxSYpR92z5bX56HgLw8fwDamOuGqEwp1OSvHbbdar0ETXZ/ozroc2huAJxYh7vhYBcPb+E4FOZ6XdLEhGcj4Oxxl9XuwbHZJ3IKVCAkfMI38HfJqBYDIzxkOCegNKa3ObgDd/R5os7VkfzlE1RenbL/j3wJWa3zeGp7trA5iNYDksDyXOmZm2vyi8lUOobMfoY1Wca086XRaQK0Bjo8WzNk+PNHa05MGc7RogdP3EZLtOKIKJ1UnT1B+ueIZGhp74K6T7aqlMvI0mcxXgJYIMfZkEOOf3c4M5PxUGKXVa5uJTuAiN8OE/TNnk1p7Y/mZ3Le6mpohcZAtopw1PmXZytA8PGqFk5REsfuV8bHEUBWmJuP59o=
+          - secure: cXstoef4Nwi8YwMWx69uMSoK2ICtJpExmiS/v/zYYS3q3AUnFAC8nZh3GfNQqB/WK5myce00RQdFsr+9a1DlnQ2icelf+W4JlUEBbtkt2nedK7OvUy5sBWBbPTsbGV2eMqsntcjIXzqlcLWICUM2OBcgeREsv2KxsLG+1RVLuwlhck/QMkBcBMPf6hLNO5scqRV+LM5SnEuD3F4B6M0K/buON9hMRfQ43PJACbHGR2ZDlUAOWu4zgeqKCJFTMI46MbFBV3zCw6OAQqEZUMHb3e+/VLJeqfBQdSuo8I75ffRpj/OnOdnOOZPTMiyKAC2fttLq/6iiWYNuH/AJXJQyY8n74wgZmVTy7h/F/8Uh9SnT+sPfPPF+TvEW1C3klY/T+N6APK/mILDLWs2kHJAgJyNBstRza7fqN/DLYHe2IoduOPUAjZve+RjJGsAWXxLhMObQr97YgZK8zbQXeiGwmT45G1ypQTFvXyY0lOE8GM0xFyXeY3ZgtILmSXpjKW4OynplLtsFLq8xAaV0h6rBD8HfBoQMZKpFh1xAPRvEnPNF55PCm9LLIkWoPwYir5ufnaxr1a5olgssmMl/4kWlEyiLtb+UZ3dzBzWF2PD92uL+mGKC/wciTMeKNvcuWWCrZ25hObHPrFWdQkjuQhiO6PEZYdChA7tEzTGSLbh4fog=
+          - secure: rYjPKOLeUdaAPopjscI/ovxFz4EuPzE2New0ypPWkJlSp9vEmNTqkTmUy9tMS8I6pOtFZbDSXQ5cLzloVeWsC5LtfYZbIuKDRyHQwk0cX89Fw+LsmYlvqeO296rCt3nNC8hPT+wcfSJ/F7wZcnrTlAtb6gq+hr1A3yLbRrsLcaOIUeH2lUYvYCSUi0ahSzrEV6UuI9+4N5BRcWA/gpMChs1Kkn6cSD0ZgDwSswjxaeOoIv1ZfZqVJnImdJxOD6v0pMdxJLu86qknMdOrccBLA5kl4suDbG6h46tGMkEZCYWBHl084dItzk0bE5iJ8qVPLUEO6LMs2K1CAK2kAfq7WZ9DuFZYx64YYl32UpkYkDn68w2QaPWWa9fbeZw8qoaGcodsK5X0FjpN8ul6tsxuw8di96SdyFjcFufpH9o8rmPKNlf+xQ3woQOdzLQiG0T8XgF2E0+pxAUF5J3qyXuDl1y2F+fiBTgNrvRab9/HkbVSMmYXRkY3XR81cF3Dr4Sq04YwyFfi7+tKQspS9rTh99Q+BhonLbIW7aro3uQUPfDhgbpLnfWguJDu1dHt8SyUjNfqGha8sH4HBQV8/MGjTGGjDghFB5IsVzPbP7wpPABiKXktXLVD+ozN7P7F/Y1EMDAfZZKR2PfRMpsUu9tLsFkYqIMjdVkS2iCh/QvXmVQ=
+          - secure: SefPAuYGUyhS++/5QOyTc9c5akVzJjFB6aJxti0zdT+Mio09WVm6SWOqCaHlzpRlpfjBM4FA6uCL6x9Klf+UFX6HyUwyH8XPqA+hCdsOpHYGSLG0eH+rFEfYiKpu2FDYBeUfMwKKXzlQLhNGaehX9t1DqPTcOOVb/VQkX/gPmn5Z8P7U+K3555yFe8d4XFDr9/mpc+8IXdC8k7CK1RYFtyGoyBGNQidotkOkaTcMlkqJDZe20sTfF5sngU/FigU0C+wLuMfgTAjR64jww8rdFnwv+tCPjDjkeb2v8B2s7cemSDA8OKrhpeCQOgB2MChSrljQ0KBwNYJI88qDkUtr0Gsa5Iy9be1cTIAPoM0PiRMHKxa1RMXsYo39Sa0ZTteIllfgF1qrmu9Uuj7UfA5g/6npecVJwP5ThMtEjvdqaKZOcnkXQKE2aRNxQHHRctjUiM2tAbij7lnhgsgoh+hf7CxNRhiVjLLA2rhcZagXC2ta/TSgNhs+kn/yGeHkf10O4drQ96Fa+jWSnKt6jYmL/UBNfC2YK3hog9zJ5UKkoFjR4ZK6kmn7vnpwj4OukPGjlNXslOTmrwUkThLbx2/1m9hFrp+8u+NneR5ZYPHLTFJu+YqPQdUdjAoP0Rq4LOwrdTrx3X8UCE3nsjOjNq3oavcM7WKAry/LSGdWVs0YbO4=
+          - secure: hjv/RPj+kJJEXwf8NQMMAT1VQIoYEmOeAzLy6msDOsgdtySK23WC1Xwx/lm9P9NMPVT5kgQjAkC7B2tK+BDGD9cmf2RQ4N8xB+QdMIQafj+uGlKZjIOjyEmpRep64QfCr37uXiQE00IutER9BIjTYkT/JxAES73KK19icv7UWCRL9BLUkAIollbR6rrYsB/Rja9kJEMhMuQ+AyE5Z5JC7BqnN6O2eol2INtdRytyOxXU/dmPgF7TpFTDbsv0wLzxv25r5Rw3pkCJrqBVW+R9TTxD6ZX3g1N6Cts4j5koobMy4F9EHJE8ory+rQbnfl0YM7SQTtHixmQCFof99xQN2aIZgFsNLulSS3WhdHDE3/GLulrGJRJCH5JAzApXEA43vEOU8y9HlswH8ySk5cZvbWabjwg3FVSNuR4Dyr9IkU99w46m0qSm9VVwlXlJFv7weNXQkbViA4MdxDP2qNy9oDxOz2ODocS+p8tg4eJGRYVfVRkwJHWGetM2jPVzDYmnOKOPYGH7GjDnPCMvsuAfSgjJRa8PqzXdBS2fhTDyXOySeoBTzDw04JYZ5uF+MUef02i1rpi8NDfK6WNVUhdV/3lpurRlMgtE2Eeqt4yPAY05Bc8e/HqhiZ8tsig46aKJcC66ALXQbdUB8ViQdzzzkepnmOLSOMz3kUHM6v4G3dk=
     before_cache:
         - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
     cache:
@@ -18,5 +19,6 @@
             - $HOME/.gradle/caches/
             - $HOME/.gradle/wrapper/
     before_install: pip install --user codecov
-    script: ./gradlew -Pversioneye.api_key=$VERSIONEYE_API_KEY build
-    after_success: codecov
+    install: "travis/build.sh"
+    script: "travis/deploy.sh"
+    after_success: "codecov"

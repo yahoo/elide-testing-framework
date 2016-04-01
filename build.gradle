@@ -1,18 +1,25 @@
 plugins {
     id "idea"
-    id "java"
     id "antlr"
     id "jacoco"
     id "checkstyle"
-    id "maven-publish"
-    id "com.jfrog.bintray" version "1.5"
+
+    id "nebula.project" version "3.0.4"
+    id "nebula.nebula-release" version "4.0.1"
+
     id "org.standardout.versioneye" version "1.2.0"
+    id "com.jfrog.bintray" version "1.6"
 }
 
 group = "com.yahoo.elide"
-version = "1.0.0-" + (new Date()).format("yyyyMMddHHmm")
-
 description = "Elide Security Testing Framework"
+
+contacts {
+    "clayreimann@yahoo-inc.com" {
+        moniker "Clay Reimann"
+        github "clayreimann"
+    }
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -97,7 +104,7 @@ jacocoTestReport {
 }
 
 versioneye {
-    exclude 'checkstyle', 'compileTestJava'
+    exclude "checkstyle", "compileTestJava", "jacoco"
 }
 
 check {
@@ -105,24 +112,13 @@ check {
     dependsOn jacocoTestReport
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from tasks.javadoc.destinationDir
-    classifier = "javadoc"
+tasks.release {
+    dependsOn build
+    finalizedBy publish
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = "sources"
-}
-
-publishing {
-    publications {
-        ElideTestingFramework(MavenPublication) {
-            from components.java
-            artifact sourceJar
-            artifact javadocJar
-        }
-    }
+nebulaRelease {
+    releaseBranchPatterns = [/.*/]
 }
 
 // see https://github.com/bintray/gradle-bintray-plugin
@@ -130,12 +126,25 @@ publishing {
 bintray {
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
-    publications = ["ElideTestingFramework"]
+    publications = ["nebula"]
 
     pkg {
         repo = "maven"
         name = "elide-testing-framework"
+        userOrg = "yahoo"
+
         licenses = ["Apache-2.0"]
-        vcsUrl = "https://github.com/yahoo/elide-testing-framework"
+        vcsUrl = "https://github.com/yahoo/elide-testing-framework.git"
+        githubRepo = 'yahoo/elide-testing-framework'
+
+        version {
+            name = project.version
+
+            mavenCentralSync {
+                sync = true
+                user = System.getenv("OSS_USER_NAME")
+                password = System.getenv("OSS_USER_SECRET")
+            }
+        }
     }
 }
