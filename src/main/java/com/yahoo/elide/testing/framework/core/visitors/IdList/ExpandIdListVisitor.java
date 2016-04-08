@@ -83,12 +83,13 @@ public class ExpandIdListVisitor extends IdListBaseVisitor<Set<String>> {
     }
 
     private void addDependencies(String typeName, String relationship) {
-        Class<?> dependentType = dictionary.getBinding(typeName);
+        Class<?> dependentType = dictionary.getEntityClass(typeName);
         if (dependentType == null) {
             throw new IllegalArgumentException("Invalid Entity Type: " + entityType);
         }
 
-        String collectionType =  dictionary.getBinding(dictionary.getParameterizedType(dependentType, relationship));
+        Class<?> relationshipType = dictionary.getParameterizedType(dependentType, relationship);
+        String collectionType =  dictionary.getJsonAliasFor(relationshipType);
 
         if (! entityType.equals(collectionType)) {
             throw new IllegalArgumentException(String.format("Collection type: {} does not match Entity Type: {}",
@@ -103,7 +104,7 @@ public class ExpandIdListVisitor extends IdListBaseVisitor<Set<String>> {
                 entity
                     .getRelationship(relationship)
                     .stream()
-                    .map(relatedEntity -> relatedEntity.getId())
+                    .map(Entity::getId)
                     .collect(Collectors.toSet())
             );
         }
