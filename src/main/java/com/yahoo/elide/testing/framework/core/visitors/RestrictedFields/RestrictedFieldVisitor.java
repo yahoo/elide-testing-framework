@@ -23,7 +23,7 @@ public class RestrictedFieldVisitor extends RestrictedFieldsBaseVisitor<Set<Stri
 
     public RestrictedFieldVisitor(EntityDictionary entityDictionary, String entityType) {
         this.entityType = entityType;
-        this.entityClass = entityDictionary.getBinding(entityType);
+        this.entityClass = entityDictionary.getEntityClass(entityType);
         if (entityClass == null) {
             throw new IllegalArgumentException("No such type: " + entityType);
         }
